@@ -1,0 +1,9 @@
+{
+    "DB_USERNAME":"root",
+    "DB_PASSWORD":"root",
+    "DB_PORT":"3306",
+    "DB_HOST":"127.0.0.1",
+    "DB_NAME":"gorm-fiber",
+
+    "JWT_SECRET":"SEPARUH_NAFASKU_TERBANG_B3RS4M4MU"
+}
