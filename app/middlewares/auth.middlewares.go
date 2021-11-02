@@ -1,9 +1,9 @@
 package middlewares
 
 import (
-	"fiber-gorm/config"
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
@@ -12,7 +12,6 @@ import (
 func IsAuthenticated(c *fiber.Ctx) error {
 	raw_token := c.Request().Header.Peek("Authorization")
 	tokenString := string(raw_token)
-	conf := config.GetConfig()
 
 	if tokenString == "" {
 		return c.Status(http.StatusUnauthorized).JSON(
@@ -26,7 +25,7 @@ func IsAuthenticated(c *fiber.Ctx) error {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 		}
-		key := []byte(conf.JWT_SECRET)
+		key := []byte(os.Getenv("JWT_SECRET"))
 		return key, nil
 	})
 	if err != nil {
