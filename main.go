@@ -1,7 +1,10 @@
 package main
 
 import (
+	"log"
+
 	"github.com/gofiber/fiber/v2"
+	"github.com/joho/godotenv"
 
 	"fiber-gorm/app/routers"
 	"fiber-gorm/config"
@@ -9,6 +12,11 @@ import (
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	app := fiber.New()
 
 	config.InitDB()
