@@ -1,7 +1,7 @@
 package database
 
 import (
-	"fiber-gorm/models"
+	"fiber-gorm/app/models"
 
 	"gorm.io/gorm"
 )
