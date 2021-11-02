@@ -6,11 +6,6 @@ import (
 	"gorm.io/gorm"
 )
 
-var (
-	err error
-	db  *gorm.DB
-)
-
 func InitMigration(db *gorm.DB) {
 	db.AutoMigrate(&models.User{}, &models.Book{})
 }
