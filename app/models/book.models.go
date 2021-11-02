@@ -12,6 +12,7 @@ type Book struct {
 	gorm.Model
 	Author string `json:"author"`
 	Name   string `json:"name"`
+	NoISBN string `json:"no_isbn"`
 }
 
 func FethAllBooks() (Response, error) {
