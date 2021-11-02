@@ -8,27 +8,23 @@ import (
 )
 
 func FetchAllBooks(c *fiber.Ctx) error {
-	result, err := models.FethAllBooks()
-	if err != nil {
-		return c.Status(http.StatusInternalServerError).JSON(map[string]string{"message": err.Error()})
-	}
-	return c.Status(http.StatusOK).JSON(result)
+	result, _ := models.FethAllBooks()
+	return c.Status(result.Status).JSON(result)
 }
 
 func CreateBook(c *fiber.Ctx) error {
-	name := c.FormValue("name")
-	email := c.FormValue("email")
+	var book models.Book
 
-	if name == "" {
-		return c.Status(402).SendString("Error while save book")
+	book.Author = c.FormValue("author")
+	book.Name = c.FormValue("name")
+
+	if book.Author == "" {
+		return c.Status(http.StatusBadRequest).SendString("name is required")
 	}
-	if email == "" {
-		return c.Status(402).SendString("Error while save book")
+	if book.Name == "" {
+		return c.Status(http.StatusBadRequest).SendString("email is required")
 	}
 
-	result, err := models.CreateABook(name, email)
-	if err != nil {
-		return c.Status(http.StatusInternalServerError).JSON(map[string]string{"message": err.Error()})
-	}
-	return c.Status(http.StatusOK).JSON(result)
+	result, _ := models.CreateABook(&book)
+	return c.Status(result.Status).JSON(result)
 }

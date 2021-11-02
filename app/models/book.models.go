@@ -10,8 +10,8 @@ import (
 
 type Book struct {
 	gorm.Model
-	Name  string `json:"name"`
-	Email string `json:"email"`
+	Author string `json:"author"`
+	Name   string `json:"name"`
 }
 
 func FethAllBooks() (Response, error) {
@@ -29,13 +29,9 @@ func FethAllBooks() (Response, error) {
 	return res, nil
 }
 
-func CreateABook(name string, email string) (Response, error) {
-	var book Book
+func CreateABook(book *Book) (Response, error) {
 	var res Response
 	db := config.GetDBInstance()
-
-	book.Name = name
-	book.Email = email
 
 	if result := db.Create(&book); result.Error != nil {
 		fmt.Print(result.Error)
