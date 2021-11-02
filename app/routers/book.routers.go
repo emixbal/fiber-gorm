@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"fiber-gorm/controllers"
+	"fiber-gorm/app/controllers"
 	"fiber-gorm/middlewares"
 
 	"github.com/gofiber/fiber/v2"
