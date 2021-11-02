@@ -17,10 +17,8 @@ $ go get
 
 - buat file denga nama .env pada root directory
 - anda dapat menyesuaikan isi file .env dengan mencontoh .env.example
-
-    Pada root directory, jalankan perintah ini
+- Pada root directory, jalankan perintah ini
     ```
     $ go run main.go
     ```
-
 - pada client requester (mis:postman) buka alamat localhost:3000/books
