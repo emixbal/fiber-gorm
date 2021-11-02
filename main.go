@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
@@ -24,5 +25,5 @@ func main() {
 	database.InitMigration(db)
 
 	routers.Init(app)
-	app.Listen(":3000")
+	app.Listen(":" + os.Getenv("APP_PORT"))
 }
