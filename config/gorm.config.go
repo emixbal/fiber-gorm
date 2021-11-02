@@ -20,3 +20,7 @@ func InitDB() *gorm.DB {
 	}
 	return DB
 }
+
+func GetDBInstance() *gorm.DB {
+	return DB
+}

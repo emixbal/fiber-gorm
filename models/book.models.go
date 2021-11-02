@@ -18,7 +18,7 @@ func FethAllBooks() (Response, error) {
 	var books []Book
 	var res Response
 
-	db := config.DB
+	db := config.GetDBInstance()
 
 	db.Find(&books)
 
@@ -32,7 +32,7 @@ func FethAllBooks() (Response, error) {
 func CreateABook(name string, email string) (Response, error) {
 	var book Book
 	var res Response
-	db := config.DB
+	db := config.GetDBInstance()
 
 	book.Name = name
 	book.Email = email
