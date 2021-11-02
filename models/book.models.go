@@ -1,7 +1,7 @@
 package models
 
 import (
-	"fiber-gorm/db"
+	"fiber-gorm/config"
 	"fmt"
 	"net/http"
 
@@ -10,14 +10,15 @@ import (
 
 type Book struct {
 	gorm.Model
-	Name string `json:"name"`
+	Name  string `json:"name"`
+	Email string `json:"email"`
 }
 
 func FethAllBooks() (Response, error) {
 	var books []Book
 	var res Response
 
-	db := db.CreateCon()
+	db := config.DB
 
 	db.Find(&books)
 
@@ -28,12 +29,13 @@ func FethAllBooks() (Response, error) {
 	return res, nil
 }
 
-func CreateABook(name string) (Response, error) {
+func CreateABook(name string, email string) (Response, error) {
 	var book Book
 	var res Response
-	db := db.CreateCon()
+	db := config.DB
 
 	book.Name = name
+	book.Email = email
 
 	if result := db.Create(&book); result.Error != nil {
 		fmt.Print(result.Error)

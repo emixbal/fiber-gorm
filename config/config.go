@@ -1,6 +1,8 @@
 package config
 
-import "github.com/tkanos/gonfig"
+import (
+	"github.com/tkanos/gonfig"
+)
 
 type Configuration struct {
 	DB_USERNAME string

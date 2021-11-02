@@ -17,12 +17,16 @@ func FetchAllBooks(c *fiber.Ctx) error {
 
 func CreateBook(c *fiber.Ctx) error {
 	name := c.FormValue("name")
+	email := c.FormValue("email")
 
 	if name == "" {
-		return c.Status(402).SendString("Error while save user")
+		return c.Status(402).SendString("Error while save book")
+	}
+	if email == "" {
+		return c.Status(402).SendString("Error while save book")
 	}
 
-	result, err := models.CreateABook(name)
+	result, err := models.CreateABook(name, email)
 	if err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(map[string]string{"message": err.Error()})
 	}
