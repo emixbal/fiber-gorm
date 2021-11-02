@@ -20,13 +20,13 @@ func CreateBook(c *fiber.Ctx) error {
 	book.NoISBN = c.FormValue("no_isbn")
 
 	if book.Author == "" {
-		return c.Status(http.StatusBadRequest).SendString("author is required")
+		return c.Status(http.StatusBadRequest).JSON(map[string]string{"message": "author is required"})
 	}
 	if book.Name == "" {
-		return c.Status(http.StatusBadRequest).SendString("name is required")
+		return c.Status(http.StatusBadRequest).JSON(map[string]string{"message": "name is required"})
 	}
 	if book.NoISBN == "" {
-		return c.Status(http.StatusBadRequest).SendString("no_isbn is required")
+		return c.Status(http.StatusBadRequest).JSON(map[string]string{"message": "no_isbn is required"})
 	}
 
 	result, _ := models.CreateABook(&book)
