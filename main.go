@@ -3,9 +3,9 @@ package main
 import (
 	"github.com/gofiber/fiber/v2"
 
+	"fiber-gorm/app/routers"
 	"fiber-gorm/config"
 	"fiber-gorm/database"
-	"fiber-gorm/routers"
 )
 
 func main() {
