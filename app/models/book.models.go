@@ -21,7 +21,14 @@ func FethAllBooks() (Response, error) {
 
 	db := config.GetDBInstance()
 
-	db.Find(&books)
+	if result := db.Find(&books); result.Error != nil {
+		fmt.Print("error FethAllBooks")
+		fmt.Print(result.Error)
+
+		res.Status = http.StatusInternalServerError
+		res.Message = "error fetchin records"
+		return res, result.Error
+	}
 
 	res.Status = http.StatusOK
 	res.Message = "success"
@@ -35,6 +42,7 @@ func CreateABook(book *Book) (Response, error) {
 	db := config.GetDBInstance()
 
 	if result := db.Create(&book); result.Error != nil {
+		fmt.Print("error CreateABook")
 		fmt.Print(result.Error)
 
 		res.Status = http.StatusInternalServerError
