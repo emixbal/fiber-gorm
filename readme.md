@@ -22,3 +22,11 @@ $ go get
     $ go run main.go
     ```
 - pada client requester (mis:postman) buka alamat localhost:3000/books
+
+
+## Run Production
+
+```bash
+docker build -t gofiber .
+docker run -d -p 3000:3000 gofiber
+```
